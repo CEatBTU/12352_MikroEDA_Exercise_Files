@@ -20,7 +20,7 @@ elaborate mult_rtl
 synthesize -to_generic
 
 # read design constraint file (only clk constraint here!)
-read_sdc ../lib/sdc/mult.sdc
+#read_sdc ../lib/sdc/mult.sdc
 
 # synthesize it to mapped  (technology mapping)
 synthesize -to_mapped -effort high
