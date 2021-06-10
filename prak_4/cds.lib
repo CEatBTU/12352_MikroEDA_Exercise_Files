@@ -1,0 +1,7 @@
+# File Created by Raphael SegabinazziFerreira at Wed Jun  2 23:51:01 2021
+# assisted by CdsLibEditor
+SOFTINCLUDE /opt/pkg/Cadence/IC_6.1.8/share/cdssetup/dfII/cds.lib
+SOFTINCLUDE /opt/pkg/Cadence/IC_6.1.8/share/cdssetup/hdl/cds.lib
+SOFTINCLUDE /opt/pkg/Cadence/IC_6.1.8/share/cdssetup/pic/cds.lib
+SOFTINCLUDE /opt/pkg/Cadence/IC_6.1.8/share/cdssetup/sg/cds.lib
+SOFTINCLUDE /opt/Lehre/12352_Mikro/NangateLibs/Nangate_45nm/Back_End/virtuoso/cds.lib
