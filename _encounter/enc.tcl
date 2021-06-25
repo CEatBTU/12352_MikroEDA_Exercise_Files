@@ -28,11 +28,16 @@ globalNetConnect VSS -type pgpin -pin VSS -inst *
 #@rsegabinazzi
 addRing -stacked_via_top_layer metal10  -follow core -type core_rings -jog_distance 0.095 -threshold 0.095 -nets {VSS VDD} -stacked_via_bottom_layer metal1 -layer {bottom metal1 top metal1 right metal2 left metal2} -width 0.8 -spacing 0.8 -offset 0.095
 
+#Refreshing the Innovus main window, you may comment this line if not interested
+win
 
 # set power stripes
 #addStripe -block_ring_top_layer_limit metal3 -max_same_layer_jog_length 1.6 -padcore_ring_bottom_layer_limit metal1 -set_to_set_distance 5 -stacked_via_top_layer metal10 -padcore_ring_top_layer_limit metal3 -spacing 0.8 -merge_stripes_value 0.095 -layer metal2 -block_ring_bottom_layer_limit metal1 -width 0.8 -nets {GND VDD} -stacked_via_bottom_layer metal1
 #@rsegabinazzi
 addStripe -block_ring_top_layer_limit metal3 -max_same_layer_jog_length 1.6 -padcore_ring_bottom_layer_limit metal1 -set_to_set_distance 5 -stacked_via_top_layer metal10 -padcore_ring_top_layer_limit metal3 -spacing 0.8 -merge_stripes_value 0.095 -layer metal2 -block_ring_bottom_layer_limit metal1 -width 0.8 -nets {VSS VDD} -stacked_via_bottom_layer metal1
+
+#Refreshing the Innovus main window, you may comment this line if not interested
+win
 
 ## set multiple threads option to speed up placement process
 #setReleaseMultiCpuLicense 0
@@ -42,10 +47,16 @@ addStripe -block_ring_top_layer_limit metal3 -max_same_layer_jog_length 1.6 -pad
 ## run placement of required design cells
 placeDesign -inPlaceOpt -prePlaceOpt
 
+#Refreshing the Innovus main window, you may comment this line if not interested
+win
+
 # add filler objects
 getFillerMode -quiet
 findCoreFillerCells
 addFiller -cell FILLCELL_X8 FILLCELL_X4 FILLCELL_X32 FILLCELL_X2 FILLCELL_X16 FILLCELL_X1 -prefix FILLER -markFixed
+
+#Refreshing the Innovus main window, you may comment this line if not interested
+win
 
 # special route for VDD and VSS
 ##sroute -jogControl { preferWithChanges differentLayer }
@@ -61,6 +72,8 @@ setNanoRouteMode -quiet -routeWithTimingDriven true
 setNanoRouteMode -quiet -routeWithSiDriven false
 routeDesign -globalDetail 
 
+#Refreshing the Innovus main window, you may comment this line if not interested
+win
 
 ## post route timing analysis
 setAnalysisMode -analysisType onChipVariation -cppr both
