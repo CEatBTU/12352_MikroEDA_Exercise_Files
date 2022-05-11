@@ -6,9 +6,9 @@
 #   -cmdfile rtl.tcl
 
 # set lib path
-set_attribute lib_search_path ../lib/lib/ 
+set_db / .init_lib_search_path ../lib/lib/ 
 # set lib
-set_attribute library {NangateOpenCellLibrary_typical_conditional_ccs.lib}
+set_db library {NangateOpenCellLibrary_typical_conditional_ccs.lib}
 
 # read hdl file
 read_hdl -vhdl vhd/mult_rtl.vhd
@@ -17,7 +17,7 @@ read_hdl -vhdl vhd/mult_rtl.vhd
 elaborate mult_rtl
 
 # synthesize it
-synthesize -to_generic
+syn_generic
 
 # read design constraint file (only clk constraint here!)
 #read_sdc ../lib/sdc/mult.sdc

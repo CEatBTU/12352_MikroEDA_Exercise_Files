@@ -6,9 +6,9 @@
 #   -cmdfile rtl.tcl
 
 # set lib path
-set_attribute lib_search_path ../lib/lib/ 
+set_db / .init_lib_search_path ../lib/lib/ 
 # set lib
-set_attribute library {NangateOpenCellLibrary_typical_conditional_ccs.lib}
+set_db library {NangateOpenCellLibrary_typical_conditional_ccs.lib}
 
 # read hdl file
 read_hdl -vhdl vhd/mult_rtl.vhd
@@ -17,22 +17,27 @@ read_hdl -vhdl vhd/mult_rtl.vhd
 elaborate mult_rtl
 
 # synthesize it
-synthesize -to_generic
+syn_generic
 
 # read design constraint file (only clk constraint here!)
 #read_sdc ../lib/sdc/mult.sdc
 
 # synthesize it to mapped  (technology mapping)
-synthesize -to_mapped -effort high
+syn_map
+syn_opt
 
 # write verilog netlist
 write_hdl > synth_prak_3/mult_rtl_synth_tech_mapped.v
 
 # write timing information of synthesized design
-write_sdf -timescale ns -precision 3 -celltiming all > synth_prak_3/mult_synth_logic.sdf
+write_sdf -timescale ns -precision 3 -celltiming all \
+    > synth_prak_3/mult_synth_logic.sdf
 
 # execute perl script to modify sdf file 
-shell perl synth_prak_3/modify_sdf.pl -f synth_prak_3/mult_synth_logic.sdf > synth_prak_3/mult_synth_logic_ms.sdf
+shell perl -pe \
+    {s/::([-]*[0-9]\.[0-9][0-9][0-9])/$1:$1:$1/ig} \
+    < synth_prak_3/mult_synth_logic.sdf \
+    > synth_prak_3/mult_synth_logic_ms.sdf
 
 # exit rtl compiler
 #exit
