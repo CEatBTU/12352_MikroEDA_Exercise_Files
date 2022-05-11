@@ -1,0 +1,10 @@
+.*.tstamp
+*.cmd*
+*.log*
+*.~undo-tree~
+_genus/fv/
+mult_rtl_synth_tech_mapped.v
+*~
+.#*
+*.swp
+*.sdf
