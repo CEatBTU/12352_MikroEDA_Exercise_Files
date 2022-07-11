@@ -4,14 +4,14 @@ global SDC_FILE
 
 create_library_set -name lsMax \
    -timing \
-    [list lib/NangateOpenCellLibrary_typical_conditional_ccs.lib ] 
+    [list lib/NangateOpenCellLibrary_typical_ccs.lib ] 
 
 create_library_set -name lsMin \
    -timing \
-    [list lib/NangateOpenCellLibrary_typical_conditional_ccs.lib ] 
+    [list lib/NangateOpenCellLibrary_typical_ccs.lib ] 
 
 create_rc_corner -name rcWorst\
-   -qx_lib_file lib/NangateOpenCellLibrary_typical_conditional_ccs.lib \
+   -qx_lib_file lib/NangateOpenCellLibrary_typical_ccs.lib \
    -preRoute_res 1\
    -postRoute_res 1\
    -preRoute_cap 1\
@@ -21,7 +21,7 @@ create_rc_corner -name rcWorst\
    -preRoute_clkcap 0
 
 create_rc_corner -name rcBest\
-   -qx_lib_file lib/NangateOpenCellLibrary_typical_conditional_ccs.lib \
+   -qx_lib_file lib/NangateOpenCellLibrary_typical_ccs.lib \
    -preRoute_res 1\
    -postRoute_res 1\
    -preRoute_cap 1\

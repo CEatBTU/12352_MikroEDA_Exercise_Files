@@ -1,5 +1,5 @@
-set init_lef_file lef/NangateOpenCellLibrary.lef
-set init_lib_file lib/NangateOpenCellLibrary_typical_conditional_ccs.lib
+set init_lef_file "lef/NangateOpenCellLibrary.tech.lef lef/NangateOpenCellLibrary.lef"
+set init_lib_file lib/NangateOpenCellLibrary_typical_ccs.lib
 set init_sdc_file ../lib/sdc/mult.sdc
 set init_verilog verilog_input/mult_rtl_synth_tech_mapped.v
 set init_gnd_net VSS
@@ -15,8 +15,9 @@ win
 
 # set floorplan margins and core utilization
 setFPlanRowSpacingAndType 1.0 1
-floorPlan -site NCSU_FreePDK_45nm -r 0.997514498757 0.699948 10.0 10.0 10.0 10.0
+floorPlan -site FreePDK45_38x28_10R_NP_162NW_34O -r 0.997514498757 0.699948 10.0 10.0 10.0 10.0
 fit
+
 
 # set global nets
 clearGlobalNets
@@ -26,7 +27,7 @@ globalNetConnect VSS -type pgpin -pin VSS -inst *
 # set power rings
 #addRing -stacked_via_top_layer metal10 -around core -jog_distance 0.095 -threshold 0.095 -nets {GND VDD} -stacked_via_bottom_layer metal1 -layer {bottom metal1 top metal1 right metal2 left metal2} -width 0.8 -spacing 0.8 -offset 0.095
 #@rsegabinazzi
-addRing -stacked_via_top_layer metal10  -follow core -type core_rings -jog_distance 0.095 -threshold 0.095 -nets {VSS VDD} -stacked_via_bottom_layer metal1 -layer {bottom metal1 top metal1 right metal2 left metal2} -width 0.8 -spacing 0.8 -offset 0.095
+addRing -stacked_via_top_layer metal10  -follow core -type core_rings -jog_distance 0.095 -threshold 0.095 -nets {VSS VDD} -stacked_via_bottom_layer metal1 -layer {bottom metal1 top metal1 right metal2 left metal2} -width 0.8 -spacing 0.8 -offset 1
 
 #Refreshing the Innovus main window, you may comment this line if not interested
 win
@@ -86,6 +87,5 @@ saveNetlist verilog_output/mult_synth_logic_flatten_layout.v
 ## export SDF file for delay simulation
 #delayCal -sdf verilog_output/mult_synth_logic_flatten_layout.sdf
 write_sdf verilog_output/mult_synth_logic_flatten_layout.sdf
-
 
 
